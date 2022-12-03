@@ -1,0 +1,903 @@
+:root {
+    --bright: hsl(0, 0%, 95%);
+    --dark: hsl(0, 0%, 7%);
+    --bright-1: hsla(0, 0%, 95%, 0.85);
+    --bright-2: hsla(0, 0%, 95%, 0.65);
+    --bright-3: hsla(0, 0%, 95%, 0.45);
+    --bright-4: hsla(0, 0%, 95%, 0.25);
+    --bright-5: hsla(0, 0%, 95%, 0.15);
+    --dark-1: hsla(0, 0%, 7%, .80);
+    --dark-2: hsla(0, 0%, 7%, .40);
+    --dark-3: hsla(0, 0%, 7%, .20);
+    --heading-1: 600 64px /1.2 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --heading-2: 500 48px /1.2 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --heading-3: 500 32px /1.2 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --copy-large: 400 20px /1.2 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --copy: 400 16px /1 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --copy-small: 400 14px /1.2 neue-haas-grotesk-text,'Helvetica Neue',sans-serif;
+    --filter-1: saturate(240%) blur(40px);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 48px;
+    font: var(--copy);
+    color: var(--bright);
+    background-color: var(--dark);
+} 
+
+a {
+    color: var(--bright);
+}
+
+button {
+    display: flex;
+    align-items: center;
+    border: none;
+    gap: 8px;
+    font: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.primary {
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: var(--dark);
+    background-color: var(--bright);
+}
+
+.primary:disabled {
+    color: var(--bright-2);
+    background-color: var(--bright-5);
+    backdrop-filter: var(--filter-1);
+    -webkit-backdrop-filter: var(--filter-1);
+    cursor: not-allowed;
+}
+
+/*Header*/
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+    padding: 32px 0;
+    margin: 0 auto;
+    gap: 48px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header div.left {
+    justify-content: left;
+    flex-shrink: 0;
+}
+
+header div.right {
+    justify-content: right;
+    flex-shrink: 0;
+    gap: 8px;
+    position: relative;
+}
+
+.logo {
+    max-height: 40px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.filter {
+    display: flex;
+    min-width: 0;
+    transition: 0.3s ease;
+}
+
+.scrollbar.container {
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    border-radius: 8px;
+}
+
+.overlay {
+    display: flex;
+    width: 6rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.overlay.left {
+    display: none;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(to right, var(--dark), var(--dark-1), transparent);
+}
+
+.overlay.right {
+    justify-content: right;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    background: linear-gradient(to left, var(--dark), var(--dark-1), transparent);
+}
+
+.control {
+    min-height: 42px;
+    padding: 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
+
+.scrollbar {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    width: 100%;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar::-webkit-scrollbar { 
+    display: none;
+}
+
+.tags {
+    display: flex;
+    column-gap: 8px;
+}
+
+.tag-group, .actives {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.actives-gap {
+    margin-right: 16px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid var(--bright-3);
+    border-radius: 8px;
+    color: var(--bright);
+    cursor: pointer;
+    transition: border 0.3s ease, transform 0.3s ease;
+}
+
+.tag.active {
+    border: 1px solid var(--bright-1);
+}
+
+.tag:disabled {
+    border-color: var(--bright-4);
+    cursor: not-allowed;
+}
+
+.tag:disabled span {
+    color: var(--bright-2);
+}
+
+.group-1 .tag, .pillow {
+    border-radius: 24px;
+}
+
+.group-2 .tag, .rectangular {
+    border-radius: 8px;
+}
+
+/*Content*/
+.content {
+    flex: 1;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 32px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 294px;
+    padding: 16px 16px 24px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transform: translateZ(0);
+    cursor: pointer;
+    transition: border 0.3s ease, opacity 0.5s ease;
+}
+
+.selected {
+    border: 1px solid var(--bright-3);
+    transition: border 0.3s ease, opacity 0.5s ease;
+}
+
+.border-hide {
+    border: 1px solid transparent !important;
+    transition: border 0.3s ease;
+}
+
+.transition-hide {
+    transition: none !important; 
+}
+
+.card-bookmark {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+    margin: 0 0 16px;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.text-color-muted {
+    color: var(--bright-2);
+}
+
+.card-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+    position: relative;
+}
+
+.card-media img {
+    max-height: 240px;
+    max-width: 240px;
+}
+
+.display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
+    min-width: 120px;
+    border-radius: 8px;
+    gap: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--bright);
+    background-color: var(--dark-2);
+    backdrop-filter: var(--filter-1);
+    -webkit-backdrop-filter: var(--filter-1);
+    will-change: filter;
+}
+
+.card-colors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-top: 24px;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.color {
+    height: 32px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.large {
+    width: 48px;
+}
+
+.medium {
+    width: 32px;
+}
+
+.small {
+    width: 16px;
+}
+
+#showMore {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 144px;
+    margin: 48px auto 0;
+}
+
+/*Footer*/
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: 1600px;
+    width: 100%;
+    margin: 48px auto 32px;
+    gap: 32px;
+    line-height: 1.2;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
+
+footer #description {
+    display: flex;
+    justify-content: left;
+    width: 520px;
+    color: var(--bright-1);
+}
+
+#description p span {
+    font-style: italic;
+}
+
+footer #links {
+    display: flex;
+    justify-content: right;
+    min-width: 264px;
+    color: var(--bright-2);
+}
+
+footer #links a {
+    text-decoration: none;
+    color: var(--bright-2);
+    transition: color 0.3s ease;
+}
+
+footer #links a span{
+    font-family: system-ui, -apple-system, Oxygen, sans-serif;
+    font-weight: 400;
+}
+
+/*Other*/
+.back-to-top {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.back-to-top .action {
+    padding: 12px 20px;
+    border-radius: 24px;
+    color: var(--bright);
+    background-color: var(--bright-5);
+    backdrop-filter: var(--filter-1);
+    -webkit-backdrop-filter: var(--filter-1);
+    will-change: filter;
+    transition: 0.3s ease;
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    width: 376px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    position: absolute;
+    top: 64px;
+    line-height: 1.2;
+    color: var(--bright-2);
+    background-color: var(--bright-5);
+    backdrop-filter: var(--filter-1);
+    -webkit-backdrop-filter: var(--filter-1);
+    will-change: filter;
+}
+
+.banner .action {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.banner .action span {
+    color: var(--bright-3);
+    cursor: pointer;
+}
+
+/*Media query by input mechanism*/
+@media (hover: hover) and (pointer: fine) {
+    .primary:hover {
+        background-color: var(--bright-1);
+    }
+    .primary:disabled:hover {
+        background-color: var(--bright-5);
+    }
+    .logo:hover {
+        opacity: 0.85;
+    }
+    .tag:hover {
+        border: 1px solid var(--bright-2);
+    }
+    .tag.active:hover, .tag.active:focus {
+        border: 1px solid var(--bright-1);
+        background-image: url('../assets/icons/bright/remove.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .tag.active:hover span, .tag.active:focus span {
+        opacity: 0;
+    }
+    .tag:disabled:hover {
+        border-color: var(--bright-4);
+    }
+    .card:hover, .card:focus-visible {
+        border: 1px solid var(--bright-2);
+    }
+    .back-to-top:hover .action {
+        background-color: var(--bright-4);
+    }
+    footer #links a:hover {
+        color: var(--bright-1);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .card {
+        border: 1px solid var(--bright-3);
+    }
+    .selected {
+        border: 1px solid var(--bright-2);
+    }
+    .card-bookmark {
+        opacity: 1 !important;
+    }
+    .display {
+        min-width: 112px;
+    }
+    .tag.active {
+        border: 1px solid var(--bright-2);
+    }
+    .tag.active::after {
+        content: url('../assets/icons/bright/remove.svg');
+        margin: 1px 0 0 2px;
+    }
+}
+
+/*Media query by viewport size*/
+@media (max-width: 1695px) {
+    .grid {
+        gap: 24px;
+    }
+    .card {
+        width: 280px;
+    }
+}
+
+@media (max-width: 1591px) {
+    .card {
+        width: 264px;
+    }
+    .card-media {
+        height: 224px;
+    } 
+    .card-media img {
+        max-height: 224px;
+        max-width: 224px;
+    }
+}
+
+@media (min-width: 1312px) and (max-width: 1511px) {
+    .display {
+        min-height: 42px;
+        min-width: 112px;
+    }
+}
+
+@media (max-width: 1511px) {
+    .card {
+        width: 248px;
+    }
+    .card-media {
+        height: 208px;
+    } 
+    .card-media img {
+        max-height: 208px;
+        max-width: 208px;
+    }
+}
+
+@media (max-width: 1431px) {
+    .card {
+        width: 224px;
+    }
+    .card-media {
+        height: 192px;
+    } 
+    .card-media img {
+        max-height: 192px;
+        max-width: 192px;
+    }
+}
+
+@media (max-width: 1311px) {
+    .card {
+        width: 280px;
+    }
+    .card-media {
+        height: 240px;
+    } 
+    .card-media img {
+        max-height: 240px;
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 1287px) {
+    .card {
+        width: 264px;
+    }
+    .card-media {
+        height: 224px;
+    } 
+    .card-media img {
+        max-height: 224px;
+        max-width: 224px;
+    }
+}
+
+@media (max-width: 1223px) {
+    body {
+        padding: 0 32px;
+    }
+    header {
+        gap: 32px;
+    }
+    .grid {
+        gap: 16px;
+    }
+}
+
+@media (min-width: 1008px) and (max-width: 1167px) {
+    .display {
+        min-height: 42px;
+        min-width: 112px;
+    }
+}
+
+@media (max-width: 1167px) {
+    .card {
+        width: 248px;
+    }
+    .card-media {
+        height: 208px;
+    } 
+    .card-media img {
+        max-height: 208px;
+        max-width: 208px;
+    }
+}
+
+@media (max-width: 1103px) {
+    .card {
+        width: 224px;
+    }
+    .card-media {
+        height: 192px;
+    } 
+    .card-media img {
+        max-height: 192px;
+        max-width: 192px;
+    }
+}
+
+@media (max-width: 1007px) {
+    .card {
+        width: 280px;
+    }
+    .card-media {
+        height: 240px;
+    } 
+    .card-media img {
+        max-height: 240px;
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 935px) {
+    .card {
+        width: 264px;
+    }
+    .card-media {
+        height: 224px;
+    } 
+    .card-media img {
+        max-height: 224px;
+        max-width: 224px;
+    }
+}
+
+@media (max-width: 887px) {
+    body {
+        padding: 0 24px;
+        font-size: 15px;
+    }
+    button {
+        font-size: 15px;
+    }
+    header {
+        padding: 24px 0 20px;
+    }
+    .logo {
+        max-height: 38px;
+    }
+    .banner {
+        width: 352px;
+    }
+    .filter {
+        visibility: hidden;
+    }
+    .content {
+        margin-top: 24px;
+    }
+    footer {
+        flex-direction: column;
+    }
+    #description {
+        width: 100%;
+        color: var(--bright-1);
+    }
+    #description p {
+        max-width: 508px;
+    }
+    footer #links {
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+    }
+    .back-to-top {
+        top: 24px;
+    }
+}
+
+@media (min-width: 704px) and (max-width: 871px) {
+    .display {
+        min-height: 42px;
+        min-width: 112px;
+    }
+}
+
+@media (max-width: 871px) {
+    .card {
+        width: 248px;
+    }
+    .card-media {
+        height: 208px;
+    } 
+    .card-media img {
+        max-height: 208px;
+        max-width: 208px;
+    }
+}
+
+@media (max-width: 823px) {
+    .card {
+        width: 224px;
+    }
+    .card-media {
+        height: 192px;
+    } 
+    .card-media img {
+        max-height: 192px;
+        max-width: 192px;
+    }
+}
+
+@media (max-width: 751px) {
+    .card {
+        width: 208px;
+    }
+    .card-media {
+        height: 176px;
+    } 
+    .card-media img {
+        max-height: 176px;
+        max-width: 176px;
+    }
+}
+
+@media (max-widtH: 731px) { /*Review*/
+    footer #description {
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-widtH: 703px) {
+    .overlay {
+        width: 4rem;
+    }
+    .card {
+        width: 280px;
+    }
+    .card-media {
+        height: 240px;
+    } 
+    .card-media img {
+        max-height: 240px;
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 623px) {
+    .card {
+        width: 264px;
+    }
+    .card-media {
+        height: 224px;
+    } 
+    .card-media img {
+        max-height: 224px;
+        max-width: 224px;
+    }
+}
+
+@media (max-width: 591px) {
+    body {
+        padding: 0 16px;
+    }
+    header {
+        padding: 16px 0;
+    }
+    .filter {
+        flex-direction: column;
+    }
+    .actives-gap {
+        margin-bottom: 8px;
+    }
+}
+
+@media (min-width: 463px) and (max-width: 575px) {
+    .display {
+        min-height: 42px;
+        min-width: 112px;
+    }
+}
+
+@media (max-width: 575px) {
+    .card {
+        width: 248px;
+    }
+    .card-media {
+        height: 208px;
+    } 
+    .card-media img {
+        max-height: 208px;
+        max-width: 208px;
+    }
+}
+
+@media (max-width: 543px) {
+    .card {
+        width: 224px;
+    }
+    .card-media {
+        height: 192px;
+    } 
+    .card-media img {
+        max-height: 192px;
+        max-width: 192px;
+    }
+}
+
+@media (max-width: 495px) {
+    .card {
+        width: 208px;
+    }
+    .card-media {
+        height: 176px;
+    } 
+    .card-media img {
+        max-height: 176px;
+        max-width: 176px;
+    }
+    footer #description, footer #links {
+        justify-content: left;
+        text-align: left;
+    }
+}
+
+@media (max-width: 463px) {
+    .overlay {
+        width: 2rem;
+    }
+    .card {
+        width: 280px;
+    }
+    .card-media {
+        height: 240px;
+    } 
+    .card-media img {
+        max-height: 240px;
+        max-width: 240px;
+    }
+    footer {
+        gap: 24px
+    }
+    .back-to-top {
+        top: 16px;
+    }
+}
+
+@media (max-width: 416px) {
+    footer #description p {
+        max-width: 344px;
+    }
+}
+
+@media (max-width: 408px) {
+    header div.right {
+        position: static;
+    }
+    .banner {
+        width: 100%;
+        top: 80px;
+    }
+    .banner .action {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 312px) {
+    .card {
+        width: 100%;
+    }
+    .card-media {
+        height: 224px;
+    } 
+    .card-media img {
+        max-height: 224px;
+        max-width: 224px;
+    }
+    .back-to-top {
+        min-width: 148px;
+    }
+    footer #links {
+        min-width: 0;
+    }
+}
