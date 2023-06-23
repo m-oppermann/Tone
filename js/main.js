@@ -326,9 +326,8 @@ $(".color").hover(function () {
 $(".color").focusin(function () {
     const id = $(this).attr("data-id")
     $('.display[data-id="'+ id +'"]').show()
-    $('.display[data-id="'+ id +'"] img').fadeIn(150)
-    $('.display[data-id="'+ id +'"] span').fadeIn(150)
-    $('.display[data-id="'+ id +'"]').show()
+        $('.display[data-id="'+ id +'"] img').fadeIn(150)
+        $('.display[data-id="'+ id +'"] span').fadeIn(150)
     if (!(window.matchMedia("(hover: none)").matches)) {
         $(".display img").attr('src',"assets/icons/bright/copy.svg")
         $(".display span").text($(this).attr("data-color").toUpperCase())
@@ -364,8 +363,9 @@ $(".color").click(function () {
     }
 });
 
-$(".colors").click(function (e) {
+$(".colors").on("click mousedown", function (e) {
     e.stopPropagation()
+    e.preventDefault()
 });
 
 $(".tag").hover(function () {
